@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infnet.Aspnet.Assessment.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infnet.Aspnet.Assessment.Presentation", "Infnet.Aspnet.Assessment.Presentation\Infnet.Aspnet.Assessment.Presentation.csproj", "{A59CAB27-754D-4AF7-828C-F872889CF116}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infnet.Aspnet.Assessment.Data", "Infnet.Aspnet.Assessment.Data\Infnet.Aspnet.Assessment.Data.csproj", "{9656C71C-7BF4-4D02-BB65-D371F7FD540A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infnet.Aspnet.Assessment.Entities", "Infnet.Aspnet.Assessment.Entities\Infnet.Aspnet.Assessment.Entities.csproj", "{B318804E-9A9A-400A-BAAA-2FDF96DA6F12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{A59CAB27-754D-4AF7-828C-F872889CF116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A59CAB27-754D-4AF7-828C-F872889CF116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A59CAB27-754D-4AF7-828C-F872889CF116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9656C71C-7BF4-4D02-BB65-D371F7FD540A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9656C71C-7BF4-4D02-BB65-D371F7FD540A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9656C71C-7BF4-4D02-BB65-D371F7FD540A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9656C71C-7BF4-4D02-BB65-D371F7FD540A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B318804E-9A9A-400A-BAAA-2FDF96DA6F12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B318804E-9A9A-400A-BAAA-2FDF96DA6F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B318804E-9A9A-400A-BAAA-2FDF96DA6F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B318804E-9A9A-400A-BAAA-2FDF96DA6F12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
