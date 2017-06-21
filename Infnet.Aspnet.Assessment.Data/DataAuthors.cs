@@ -85,7 +85,9 @@ namespace Infnet.Aspnet.Assessment.Data
             using (var db = new LibraryDataModel())
             {
                 db.Author.Add(author);
-                return db.SaveChanges() > 0;
+                var success = db.SaveChanges() > 0;
+                if (success) { entry.Id = author.Id; }
+                return success;
             }
         }
 

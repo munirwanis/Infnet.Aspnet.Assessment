@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AuthorEntity = Infnet.Aspnet.Assessment.Entities.Author;
 using BookEntity = Infnet.Aspnet.Assessment.Entities.Book;
 
@@ -87,7 +84,9 @@ namespace Infnet.Aspnet.Assessment.Data
             using (var db = new LibraryDataModel())
             {
                 db.Books.Add(book);
-                return db.SaveChanges() > 0;
+                var success = db.SaveChanges() > 0;
+                if (success) { entry.Id = book.Id; }
+                return success;
             }
         }
 

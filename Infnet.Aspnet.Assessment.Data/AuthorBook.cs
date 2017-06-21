@@ -9,7 +9,6 @@ namespace Infnet.Aspnet.Assessment.Data
     [Table("AuthorBook")]
     public partial class AuthorBook
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public int AuthorId { get; set; }
