@@ -62,5 +62,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infnet.Aspnet.Assessment.Entities\Infnet.Aspnet.Assessment.Entities.csproj">
+      <Project>{b318804e-9a9a-400a-baaa-2fdf96da6f12}</Project>
+      <Name>Infnet.Aspnet.Assessment.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
