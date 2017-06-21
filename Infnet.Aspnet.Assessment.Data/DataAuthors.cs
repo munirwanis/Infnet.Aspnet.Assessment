@@ -121,22 +121,7 @@ namespace Infnet.Aspnet.Assessment.Data
                     var authorBook = new AuthorBook
                     {
                         AuthorId = entry.Id,
-                        Author = new Author
-                        {
-                            Id = entry.Id,
-                            Birthdate = entry.Birthdate,
-                            Email = entry.Email,
-                            LastName = entry.LastName,
-                            Name = entry.Name
-                        },
-                        BookId = book.Id,
-                        Books = new Books
-                        {
-                            Id = book.Id,
-                            Isbn = book.Isbn,
-                            LauchDate = book.LauchDate,
-                            Title = book.Title
-                        }
+                        BookId = book.Id
                     };
                     authorBooks.Add(authorBook);
                 }
