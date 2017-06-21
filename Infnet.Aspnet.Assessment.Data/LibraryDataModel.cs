@@ -8,7 +8,7 @@ namespace Infnet.Aspnet.Assessment.Data
     public partial class LibraryDataModel : DbContext
     {
         public LibraryDataModel()
-            : base("name=LibraryDataModel")
+            : base("name=DefaultConnection")
         {
         }
 

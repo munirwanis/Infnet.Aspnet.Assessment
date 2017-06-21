@@ -26,7 +26,8 @@ namespace Infnet.Aspnet.Assessment.Data
             using (var db = new LibraryDataModel())
             {
                 var author = (from a in db.Author
-                              join ab in db.AuthorBook on a.Id equals ab.AuthorId
+                              join ab in db.AuthorBook on a.Id equals ab.AuthorId into abs
+                              from ab in abs.DefaultIfEmpty()
                               where a.Id == id
                               select new AuthorEntity
                               {
@@ -42,9 +43,8 @@ namespace Infnet.Aspnet.Assessment.Data
                                                Id = b.Id,
                                                Isbn = b.Isbn,
                                                LauchDate = b.LauchDate,
-                                               Title = b.Title,
-                                               Authors = new List<AuthorEntity>()
-                                           }).ToList()
+                                               Title = b.Title
+                                           }).DefaultIfEmpty().ToList()
                               }).SingleOrDefault();
                 return author;
             }
@@ -55,7 +55,8 @@ namespace Infnet.Aspnet.Assessment.Data
             using (var db = new LibraryDataModel())
             {
                 var authors = (from a in db.Author
-                               join ab in db.AuthorBook on a.Id equals ab.AuthorId
+                               join ab in db.AuthorBook on a.Id equals ab.AuthorId into abs
+                               from ab in abs.DefaultIfEmpty()
                                select new AuthorEntity
                                {
                                    Birthdate = a.Birthdate,
@@ -70,10 +71,10 @@ namespace Infnet.Aspnet.Assessment.Data
                                                 Id = b.Id,
                                                 Isbn = b.Isbn,
                                                 LauchDate = b.LauchDate,
-                                                Title = b.Title,
-                                                Authors = new List<AuthorEntity>()
-                                            }).ToList()
+                                                Title = b.Title
+                                            }).DefaultIfEmpty().ToList()
                                }).ToList();
+
                 return authors;
             }
         }
@@ -101,40 +102,44 @@ namespace Infnet.Aspnet.Assessment.Data
 
         private Author MapAuthor(AuthorEntity entry)
         {
-            var authorBooks = new List<AuthorBook>();
-            foreach (var book in entry.Books)
-            {
-                var authorBook = new AuthorBook
-                {
-                    AuthorId = entry.Id,
-                    Author = new Author
-                    {
-                        Id = entry.Id,
-                        Birthdate = entry.Birthdate,
-                        Email = entry.Email,
-                        LastName = entry.LastName,
-                        Name = entry.Name
-                    },
-                    BookId = book.Id,
-                    Books = new Books
-                    {
-                        Id = book.Id,
-                        Isbn = book.Isbn,
-                        LauchDate = book.LauchDate,
-                        Title = book.Title
-                    }
-                };
-                authorBooks.Add(authorBook);
-            }
             var author = new Author
             {
                 Name = entry.Name,
                 LastName = entry.LastName,
                 Email = entry.Email,
                 Birthdate = entry.Birthdate,
-                Id = entry.Id,
-                AuthorBook = authorBooks
+                Id = entry.Id
             };
+
+            if (entry.Books != null && entry.Books.Count > 0)
+            {
+                var authorBooks = new List<AuthorBook>();
+                foreach (var book in entry.Books)
+                {
+                    var authorBook = new AuthorBook
+                    {
+                        AuthorId = entry.Id,
+                        Author = new Author
+                        {
+                            Id = entry.Id,
+                            Birthdate = entry.Birthdate,
+                            Email = entry.Email,
+                            LastName = entry.LastName,
+                            Name = entry.Name
+                        },
+                        BookId = book.Id,
+                        Books = new Books
+                        {
+                            Id = book.Id,
+                            Isbn = book.Isbn,
+                            LauchDate = book.LauchDate,
+                            Title = book.Title
+                        }
+                    };
+                    authorBooks.Add(authorBook);
+                }
+                author.AuthorBook = authorBooks;
+            }
 
             return author;
         }
