@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Birthdate)
         </th>
+        <th>
+            Books Quantity
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Birthdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Books.Count)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

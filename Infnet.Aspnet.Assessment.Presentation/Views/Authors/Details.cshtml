@@ -43,6 +43,20 @@
         </dd>
 
     </dl>
+    <br />
+    <h5>Books</h5>
+    <dl class="dl-horizontal">
+        @foreach (var book in Model.Books)
+        {
+            <dt>@Html.DisplayNameFor(m => book.Title)</dt>
+            <dd>@Html.DisplayFor(m => book.Title)</dd>
+            <dt>@Html.DisplayNameFor(m => book.Isbn)</dt>
+            <dd>@Html.DisplayFor(m => book.Isbn)</dd>
+            <dt>@Html.DisplayNameFor(m => book.LauchDate)</dt>
+            <dd>@Html.DisplayFor(m => book.LauchDate)</dd>
+            <br />
+        }
+    </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
