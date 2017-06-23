@@ -29,5 +29,7 @@ namespace Infnet.Aspnet.Assessment.Presentation.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Infnet.Aspnet.Assessment.Entities.Author> Authors { get; set; }
     }
 }

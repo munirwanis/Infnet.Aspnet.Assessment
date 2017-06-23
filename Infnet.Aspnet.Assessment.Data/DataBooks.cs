@@ -26,8 +26,6 @@ namespace Infnet.Aspnet.Assessment.Data
             using (var db = new LibraryDataModel())
             {
                 var book = (from b in db.Books
-                            join ab in db.AuthorBook on b.Id equals ab.BookId into abs
-                            from ab in abs.DefaultIfEmpty()
                             where b.Id == id
                             select new BookEntity
                             {
@@ -36,6 +34,8 @@ namespace Infnet.Aspnet.Assessment.Data
                                 LauchDate = b.LauchDate,
                                 Title = b.Title,
                                 Authors = (from a in db.Author
+                                           join ab in db.AuthorBook on b.Id equals ab.BookId into abs
+                                           from ab in abs.DefaultIfEmpty()
                                            where a.Id == ab.AuthorId
                                            select new AuthorEntity
                                            {
@@ -55,8 +55,6 @@ namespace Infnet.Aspnet.Assessment.Data
             using (var db = new LibraryDataModel())
             {
                 var books = (from b in db.Books
-                             join ab in db.AuthorBook on b.Id equals ab.BookId into abs
-                             from ab in abs.DefaultIfEmpty()
                              select new BookEntity
                              {
                                  Id = b.Id,
@@ -64,6 +62,8 @@ namespace Infnet.Aspnet.Assessment.Data
                                  LauchDate = b.LauchDate,
                                  Title = b.Title,
                                  Authors = (from a in db.Author
+                                            join ab in db.AuthorBook on b.Id equals ab.BookId into abs
+                                            from ab in abs.DefaultIfEmpty()
                                             where a.Id == ab.AuthorId
                                             select new AuthorEntity
                                             {

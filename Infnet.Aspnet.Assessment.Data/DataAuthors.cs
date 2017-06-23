@@ -26,8 +26,6 @@ namespace Infnet.Aspnet.Assessment.Data
             using (var db = new LibraryDataModel())
             {
                 var author = (from a in db.Author
-                              join ab in db.AuthorBook on a.Id equals ab.AuthorId into abs
-                              from ab in abs.DefaultIfEmpty()
                               where a.Id == id
                               select new AuthorEntity
                               {
@@ -37,6 +35,8 @@ namespace Infnet.Aspnet.Assessment.Data
                                   LastName = a.LastName,
                                   Name = a.Name,
                                   Books = (from b in db.Books
+                                           join ab in db.AuthorBook on a.Id equals ab.AuthorId into abs
+                                           from ab in abs.DefaultIfEmpty()
                                            where b.Id == ab.BookId
                                            select new BookEntity
                                            {
@@ -55,8 +55,6 @@ namespace Infnet.Aspnet.Assessment.Data
             using (var db = new LibraryDataModel())
             {
                 var authors = (from a in db.Author
-                               join ab in db.AuthorBook on a.Id equals ab.AuthorId into abs
-                               from ab in abs.DefaultIfEmpty()
                                select new AuthorEntity
                                {
                                    Birthdate = a.Birthdate,
@@ -65,6 +63,8 @@ namespace Infnet.Aspnet.Assessment.Data
                                    LastName = a.LastName,
                                    Name = a.Name,
                                    Books = (from b in db.Books
+                                            join ab in db.AuthorBook on a.Id equals ab.AuthorId into abs
+                                            from ab in abs.DefaultIfEmpty()
                                             where b.Id == ab.BookId
                                             select new BookEntity
                                             {
