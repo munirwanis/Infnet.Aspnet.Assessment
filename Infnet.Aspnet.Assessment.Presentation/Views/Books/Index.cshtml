@@ -4,6 +4,11 @@
     ViewBag.Title = "Index";
 }
 
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/Home/Index");
+}
+
 <h2>Index</h2>
 
 <p>
@@ -20,6 +25,9 @@
         <th>
             @Html.DisplayNameFor(model => model.LauchDate)
         </th>
+        <th>
+            Authors
+        </th>
         <th></th>
     </tr>
 
@@ -33,6 +41,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LauchDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Authors.Count)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

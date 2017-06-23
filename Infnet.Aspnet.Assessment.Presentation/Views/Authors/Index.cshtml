@@ -6,6 +6,11 @@
 
 <h2>Index</h2>
 
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/Home/Index");
+}
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -24,7 +29,7 @@
             @Html.DisplayNameFor(model => model.Birthdate)
         </th>
         <th>
-            Books Quantity
+            Books
         </th>
         <th></th>
     </tr>

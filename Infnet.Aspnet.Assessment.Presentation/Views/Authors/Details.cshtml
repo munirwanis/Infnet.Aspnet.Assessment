@@ -4,6 +4,11 @@
     ViewBag.Title = "Details";
 }
 
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/Home/Index");
+}
+
 <h2>Details</h2>
 
 <div>
