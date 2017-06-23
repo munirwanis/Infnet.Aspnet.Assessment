@@ -8,110 +8,110 @@ using System.Web;
 using System.Web.Mvc;
 using Infnet.Aspnet.Assessment.Entities;
 using Infnet.Aspnet.Assessment.Presentation.Models;
-using RestSharp;
 using Infnet.Aspnet.Assessment.Presentation.Helper;
+using RestSharp;
 
 namespace Infnet.Aspnet.Assessment.Presentation.Controllers
 {
-    public class AuthorsController : Controller
+    public class BooksController : Controller
     {
-        private const string URI = "api/authors";
+        private const string URI = "api/book";
 
-        // GET: Authors
+        // GET: Books
         public ActionResult Index()
         {
-            var authors = RequestHelper.MakeRequest<List<Author>>(URI, Method.GET);
-            return View(authors);
+            var books = RequestHelper.MakeRequest<List<Book>>(URI, Method.GET);
+            return View(books);
         }
 
-        // GET: Authors/Details/5
+        // GET: Books/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var author = RequestHelper.MakeRequest<Author>($"{URI}/{id}", Method.GET);
-            if (author == null)
+            var book = RequestHelper.MakeRequest<Book>($"{URI}/{id}", Method.GET);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(author);
+            return View(book);
         }
 
-        // GET: Authors/Create
+        // GET: Books/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Authors/Create
+        // POST: Books/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,LastName,Email,Birthdate")] Author author)
+        public ActionResult Create([Bind(Include = "Id,Title,Isbn,LauchDate")] Book book)
         {
             if (ModelState.IsValid)
             {
-                var newAuthor = RequestHelper.MakeRequest<Author>(URI, Method.POST, author);
+                var newBook = RequestHelper.MakeRequest<Book>(URI, Method.POST, book);
                 return RedirectToAction("Index");
             }
 
-            return View(author);
+            return View(book);
         }
 
-        // GET: Authors/Edit/5
+        // GET: Books/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var author = RequestHelper.MakeRequest<Author>($"{URI}/{id}", Method.GET);
-            if (author == null)
+            var book = RequestHelper.MakeRequest<Book>($"{URI}/{id}", Method.GET);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(author);
+            return View(book);
         }
 
-        // POST: Authors/Edit/5
+        // POST: Books/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,LastName,Email,Birthdate")] Author author)
+        public ActionResult Edit([Bind(Include = "Id,Title,Isbn,LauchDate")] Book book)
         {
             if (ModelState.IsValid)
             {
-                var newAuthor = RequestHelper.MakeRequest<Author>($"{URI}/{author.Id}", Method.PUT, author);
+                var newBook = RequestHelper.MakeRequest<Book>($"{URI}/{book.Id}", Method.PUT, book);
                 return RedirectToAction("Index");
             }
-            return View(author);
+            return View(book);
         }
 
-        // GET: Authors/Delete/5
+        // GET: Books/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var author = RequestHelper.MakeRequest<Author>($"{URI}/{id}", Method.GET);
-            if (author == null)
+            var book = RequestHelper.MakeRequest<Book>($"{URI}/{id}", Method.GET);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(author);
+            return View(book);
         }
 
-        // POST: Authors/Delete/5
+        // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var author = RequestHelper.MakeRequest<Author>($"{URI}/{id}", Method.DELETE);
+            var book = RequestHelper.MakeRequest<Book>($"{URI}/{id}", Method.DELETE);
             return RedirectToAction("Index");
         }
     }

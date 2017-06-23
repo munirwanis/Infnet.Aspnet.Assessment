@@ -1,0 +1,59 @@
+﻿@model Infnet.Aspnet.Assessment.Entities.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Isbn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Isbn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LauchDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LauchDate)
+        </dd>
+
+    </dl>
+    <br />
+    <h5>Authors</h5>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var author in Model.Authors)
+        {
+            <dt>@Html.DisplayNameFor(m => author.Name)</dt>
+            <dd>@Html.DisplayFor(m => author.Name)</dd>
+            <dt>@Html.DisplayNameFor(m => author.LastName)</dt>
+            <dd>@Html.DisplayFor(m => author.LastName)</dd>
+            <dt>@Html.DisplayNameFor(m => author.Email)</dt>
+            <dd>@Html.DisplayFor(m => author.Email)</dd>
+            <dt>@Html.DisplayNameFor(m => author.Birthdate)</dt>
+            <dd>@Html.DisplayFor(m => author.Birthdate)</dd>
+            <br />
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
